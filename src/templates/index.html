@@ -1,0 +1,68 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Django-Telegram-Bot</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+    <style>
+        body {
+            background-color: #CCE6FF;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #F5F5F5;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="header">
+        <h1 class="title">Project Description</h1>
+        <p class="subtitle">The project allows you to retrieve book information from the Django database and send
+            this
+            information through a Telegram bot</p>
+        <p class="content">List of the books in library:</p>
+    </div>
+</header>
+
+<main>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-multiline">
+                {% for book in books %}
+                <div class="column is-one-quarter">
+                    <div class="box">
+                        {% if book.image %}
+                        <img src="{{ book.image.url }}" alt="Product Image" class="book-image">
+                        {% else %}
+                        <img src="{% static 'book.jpg' %}" alt="Product Image" class="book-image">
+                        {% endif %}
+                        <p class="title">{{ book.title }}</p>
+                        <p class="subtitle">{{ book.author }}</p>
+                        <a href="{% url 'book_detail' book.id %}" class="button is-primary">Book details</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <h3 class="title is-3">Django Telegram Bot</h3>
+</footer>
+
+</body>
+</html>
