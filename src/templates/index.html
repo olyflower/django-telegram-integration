@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Django-Telegram-Bot</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-
     <style>
         body {
             background-color: #CCE6FF;
         }
-
         .header {
+            max-width: 1000px;
+            margin: auto;
             text-align: center;
             padding: 2rem;
         }
@@ -23,7 +23,6 @@
             padding: 1rem;
             background-color: #F5F5F5;
         }
-
     </style>
 </head>
 <body>
@@ -34,6 +33,18 @@
             this
             information through a Telegram bot</p>
         <p class="content">List of the books in library:</p>
+         <form action="{% url 'index' %}" method="GET">
+            <div class="field has-addons">
+                <div class="control">
+                    <label>
+                        <input class="input" type="text" name="search_text" placeholder="Search by title or author" value="{{ search_text }}">
+                    </label>
+                </div>
+                <div class="control">
+                    <button class="button is-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
     </div>
 </header>
 
